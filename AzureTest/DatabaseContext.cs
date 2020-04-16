@@ -17,6 +17,10 @@ namespace AzureTest
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //modelBuilder.Entity<Models.Todo>()
+            //    .Property(p => p.Id)
+            //    .UseIdentityColumn();
+
             modelBuilder.Entity<Models.Todo>().ToTable("Todos");
         }
     }

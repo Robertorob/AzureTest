@@ -21,9 +21,9 @@ namespace AzureTest
 
             var todos = new Todo[]
             {
-                new Todo{Description="D1", CreatedDate = DateTime.UtcNow },
-                new Todo{Description="D2", CreatedDate = DateTime.UtcNow.AddDays(1) },
-                new Todo{Description="D3", CreatedDate = DateTime.UtcNow.AddDays(2) },
+                new Todo{Description="D1", CreatedDate = DateTime.UtcNow, Id = 1 },
+                new Todo{Description="D2", CreatedDate = DateTime.UtcNow.AddDays(1), Id = 2 },
+                new Todo{Description="D3", CreatedDate = DateTime.UtcNow.AddDays(2), Id = 3 },
             };
             foreach (var e in todos)
             {
