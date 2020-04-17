@@ -7,6 +7,8 @@ using AzureTest.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.Azure.KeyVault;
+using Microsoft.Azure.Services.AppAuthentication;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,9 +28,13 @@ namespace AzureTest
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<AzureKeyVaultService>();           
+
+            var azureKeyVaultService = new AzureKeyVaultService(Configuration);
+            var sqlDatabaseConnectionString = azureKeyVaultService.GetConnectionString("SqlDatabaseConnectionString");
+
             services.AddControllersWithViews();
-            services.AddDbContext<DatabaseContext>(f =>
-            f.UseSqlServer(Configuration.GetConnectionString("RobertoConnectionString")));
+            services.AddDbContext<DatabaseContext>(f =>f.UseSqlServer(sqlDatabaseConnectionString));
             services.AddSingleton<StorageAccountService>();
         }
 

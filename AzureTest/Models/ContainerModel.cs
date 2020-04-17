@@ -9,5 +9,7 @@ namespace AzureTest.Models
     public class ContainerModel
     {
         public string ContainerName { get; set; }
+
+        public IEnumerable<FileModel> Files { get; set; }
     }
 }

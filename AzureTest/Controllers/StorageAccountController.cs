@@ -25,23 +25,7 @@ namespace AzureTest.Controllers
 
         public IActionResult Index()
         {
-            var files = this.storageAccountService
-                .ListFiles()
-                .Select(f => new FileModel 
-                { 
-                    FileName = Path.GetFileNameWithoutExtension(f.FileName), 
-                    Extension = Path.GetExtension(f.FileName),
-                    Size = f.Size,
-                    LastModified = f.LastModified
-                });
-
-            var containers = this.storageAccountService.ListContainers();
-
-            return View(new StorageAccountModel
-            {
-                Files = files,
-                Containers = containers
-            });
+            return View(this.storageAccountService.ListContainers());
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

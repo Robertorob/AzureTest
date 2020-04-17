@@ -1,79 +1,51 @@
-﻿@model AzureTest.Models.StorageAccountModel
+﻿@model IEnumerable<AzureTest.Models.ContainerModel>
 
     <div class="text-center">
         <h1 class="display-4">Storage Account</h1>
 
-        <h2>Containers</h2>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Containers.First().ContainerName)
-                    </th>
 
-                    @*<th></th>*@
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.Containers)
-                {
+        @foreach (var item in Model)
+        {
+
+            <h2>@item.ContainerName</h2>
+            <table class="table">
+                <thead>
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ContainerName)
-                        </td>
-
-                        @*<td>
-                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                        </td>*@
+                        <th>
+                            File Name
+                        </th>
+                        <th>
+                            Extension
+                        </th>
+                        <th>
+                            Size
+                        </th>
+                        <th>
+                            Last Modified
+                        </th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var file in item.Files)
+                    {
+                        <tr>
+                            <td>
+                                @file.FileName
+                            </td>
+                            <td>
+                                @file.Extension
+                            </td>
+                            <td>
+                                @file.Size
+                            </td>
+                            <td>
+                                @file.LastModified
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
 
-        <h2>Files</h2>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Files.First().FileName)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Files.First().Extension)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Files.First().Size)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Files.First().LastModified)
-                    </th>
-                    @*<th></th>*@
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.Files)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FileName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Extension)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Size)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.LastModified)
-                        </td>
-                        @*<td>
-                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                        </td>*@
-                    </tr>
-                }
-            </tbody>
-        </table>
+        
     </div>
