@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AzureTest.Controllers;
+using AzureTest.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,6 +29,7 @@ namespace AzureTest
             services.AddControllersWithViews();
             services.AddDbContext<DatabaseContext>(f =>
             f.UseSqlServer(Configuration.GetConnectionString("RobertoConnectionString")));
+            services.AddSingleton<StorageAccountService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
