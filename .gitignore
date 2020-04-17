@@ -409,3 +409,4 @@ msbuild.wrn
 
 # Temp build folder
 /Temp/Precompile/
+/AzureTest/appsettings.Development.json
